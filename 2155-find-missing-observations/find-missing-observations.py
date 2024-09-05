@@ -6,13 +6,7 @@ class Solution:
         if required > 6 * n or required < n:
             return []
         
-        ans = [required // n] * n
-        remain = required - sum(ans)
+        quotient = required // n
+        remainder = required % n
+        return [quotient + (1 if i < remainder else 0) for i in range(n)]
         
-        for i in range(n):
-            if remain > 0:
-                add = min(6 - ans[i], remain)
-                ans[i] += add
-                remain -= add
-        
-        return ans
